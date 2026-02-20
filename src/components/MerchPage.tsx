@@ -6,62 +6,104 @@ import { ArrowLeft, ShoppingBag } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 import SectionHeading from "./SectionHeading";
 
-const products = [
+interface Product {
+  id: string;
+  name: string;
+  price: number;
+  displayPrice: string;
+  category: string;
+  description: string;
+  image: string | null;
+  sizes?: string;
+  url: string;
+}
+
+const products: Product[] = [
   {
     id: "recording-zone-tee",
     name: 'Interleaved "Recording Zone" Classic Tee',
-    price: "$19.99 – $26.00",
-    category: "INTERLEAVED",
+    price: 19.99,
+    displayPrice: "From $19.99",
+    category: "APPAREL",
+    description: "Classic fit tee with the Interleaved Recording Zone design.",
     image: null,
+    sizes: "S|M|L|XL|2XL|3XL",
+    url: "/merch",
   },
   {
     id: "tbitw-hoodie",
     name: "TBITW EP (Digital Copy) & Unisex Hoodie",
-    price: "$44.00 – $50.03",
-    category: "INTERLEAVED",
+    price: 44.00,
+    displayPrice: "From $44.00",
+    category: "BUNDLE",
+    description: "There's Blood In The Water EP digital download bundled with an Interleaved unisex hoodie.",
     image: null,
+    sizes: "S|M|L|XL|2XL|3XL",
+    url: "/merch",
   },
   {
     id: "tbitw-ep",
     name: "There's Blood In The Water EP (Digital Copy)",
-    price: "$9.99",
+    price: 9.99,
+    displayPrice: "$9.99",
     category: "DIGITAL",
+    description: "Digital download of the There's Blood In The Water EP.",
     image: null,
+    url: "/merch",
   },
   {
     id: "tbitw-sweatshirt",
     name: "TBITW EP (Digital Copy) & Unisex Sweatshirt",
-    price: "$50.00",
-    category: "INTERLEAVED",
+    price: 50.00,
+    displayPrice: "$50.00",
+    category: "BUNDLE",
+    description: "There's Blood In The Water EP digital download bundled with an Interleaved unisex sweatshirt.",
     image: null,
+    sizes: "S|M|L|XL|2XL|3XL",
+    url: "/merch",
   },
   {
     id: "dad-hat",
     name: "Interleaved Dad Hat",
-    price: "$32.00",
-    category: "INTERLEAVED",
+    price: 32.00,
+    displayPrice: "$32.00",
+    category: "ACCESSORIES",
+    description: "Embroidered Interleaved dad hat. One size fits most.",
     image: null,
+    url: "/merch",
   },
   {
     id: "unisex-hoodie",
     name: "Unisex Hoodie",
-    price: "$51.00 – $59.00",
-    category: "INTERLEAVED",
+    price: 51.00,
+    displayPrice: "From $51.00",
+    category: "APPAREL",
+    description: "Interleaved unisex hoodie.",
     image: null,
+    sizes: "S|M|L|XL|2XL|3XL",
+    url: "/merch",
   },
   {
     id: "premium-sweatshirt",
     name: "Unisex Premium Sweatshirt",
-    price: "$45.00 – $53.00",
-    category: "INTERLEAVED",
+    price: 45.00,
+    displayPrice: "From $45.00",
+    category: "APPAREL",
+    description: "Interleaved premium unisex sweatshirt.",
     image: null,
+    sizes: "S|M|L|XL|2XL|3XL",
+    url: "/merch",
   },
   {
     id: "organic-tee",
     name: "Organic T-Shirt",
-    price: "$31.50 – $35.00",
-    category: "INTERLEAVED",
+    price: 31.50,
+    displayPrice: "From $31.50",
+    category: "APPAREL",
+    description: "Interleaved organic cotton t-shirt.",
     image: null,
+    sizes: "S|M|L|XL|2XL",
+    url: "/merch",
   },
 ];
 
@@ -85,7 +127,7 @@ export default function MerchPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {products.map((product, i) => (
             <AnimatedSection key={product.id} delay={i * 0.05}>
-              <div className="group border border-border bg-bg-card hover:border-crimson/40 transition-all duration-500 cursor-pointer">
+              <div className="group border border-border bg-bg-card hover:border-crimson/40 transition-all duration-500">
                 {/* Product Image */}
                 <div className="relative aspect-square overflow-hidden bg-bg-elevated">
                   {product.image ? (
@@ -103,7 +145,6 @@ export default function MerchPage() {
                       />
                     </div>
                   )}
-                  {/* Hover overlay */}
                   <div className="absolute inset-0 bg-crimson/0 group-hover:bg-crimson/5 transition-all duration-500" />
                 </div>
 
@@ -112,37 +153,37 @@ export default function MerchPage() {
                   <span className="text-[10px] uppercase tracking-[0.3em] text-crimson font-semibold">
                     {product.category}
                   </span>
-                  <h3 className="text-sm uppercase tracking-[0.08em] text-text-primary group-hover:text-amber transition-colors mt-2 mb-3 leading-relaxed">
+                  <h3 className="text-sm uppercase tracking-[0.08em] text-text-primary group-hover:text-amber transition-colors mt-2 mb-2 leading-relaxed">
                     {product.name}
                   </h3>
-                  <p className="text-amber text-sm font-semibold">
-                    {product.price}
+                  <p className="text-text-muted text-xs mb-3 leading-relaxed">
+                    {product.description}
                   </p>
-                  <button className="mt-4 w-full py-2.5 border border-text-muted/30 hover:border-crimson hover:bg-crimson text-text-secondary hover:text-text-primary uppercase tracking-[0.2em] text-xs transition-all duration-300">
-                    View Details
+                  <p className="text-amber text-sm font-semibold mb-4">
+                    {product.displayPrice}
+                  </p>
+                  <button
+                    className="snipcart-add-item mt-2 w-full py-2.5 border border-text-muted/30 hover:border-crimson hover:bg-crimson text-text-secondary hover:text-text-primary uppercase tracking-[0.2em] text-xs transition-all duration-300"
+                    data-item-id={product.id}
+                    data-item-name={product.name}
+                    data-item-price={product.price}
+                    data-item-url={product.url}
+                    data-item-description={product.description}
+                    {...(product.sizes
+                      ? {
+                          "data-item-custom1-name": "Size",
+                          "data-item-custom1-options": product.sizes,
+                          "data-item-custom1-required": "true",
+                        }
+                      : {})}
+                  >
+                    Add to Cart
                   </button>
                 </div>
               </div>
             </AnimatedSection>
           ))}
         </div>
-
-        {/* Note about merch store */}
-        <AnimatedSection className="mt-16 text-center">
-          <div className="border border-border bg-bg-card p-8 max-w-2xl mx-auto">
-            <p className="text-text-secondary text-sm leading-relaxed">
-              Full merch store with size selection and checkout coming soon.
-              In the meantime, email us at{" "}
-              <a
-                href="mailto:admin@interleavedmusic.com"
-                className="text-amber hover:text-amber-light transition-colors underline"
-              >
-                admin@interleavedmusic.com
-              </a>{" "}
-              to place an order.
-            </p>
-          </div>
-        </AnimatedSection>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 
 const navLinks = [
@@ -68,16 +68,32 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
+          <button
+            className="snipcart-checkout relative text-text-secondary hover:text-amber transition-colors duration-300"
+            aria-label="Shopping cart"
+          >
+            <ShoppingCart size={20} />
+            <span className="snipcart-items-count absolute -top-2 -right-2 bg-crimson text-text-primary text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center" />
+          </button>
         </div>
 
-        {/* Mobile Hamburger */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden relative z-50 text-text-primary"
-          aria-label="Toggle menu"
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* Mobile: Cart + Hamburger */}
+        <div className="flex items-center gap-4 md:hidden">
+          <button
+            className="snipcart-checkout relative z-50 text-text-primary"
+            aria-label="Shopping cart"
+          >
+            <ShoppingCart size={20} />
+            <span className="snipcart-items-count absolute -top-2 -right-2 bg-crimson text-text-primary text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center" />
+          </button>
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="relative z-50 text-text-primary"
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
 
         {/* Mobile Menu Overlay */}
         <div

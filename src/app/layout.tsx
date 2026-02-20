@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
+import SnipcartProvider from "@/components/SnipcartProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -82,6 +83,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css"
+        />
+      </head>
       <body
         className={`${inter.variable} font-sans bg-bg text-text-primary antialiased grain-overlay`}
       >
@@ -89,6 +96,7 @@ export default function RootLayout({
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <SnipcartProvider />
       </body>
     </html>
   );
