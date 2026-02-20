@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import AnimatedSection from "./AnimatedSection";
 import { Music, Youtube, Facebook, Instagram, Mail } from "lucide-react";
@@ -43,6 +44,40 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [message, setMessage] = useState("");
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+
+    setStatus("loading");
+    setMessage("");
+
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setStatus("success");
+        setMessage("You're in! Watch your inbox.");
+        setEmail("");
+      } else {
+        setStatus("error");
+        setMessage(data.error || "Something went wrong.");
+      }
+    } catch {
+      setStatus("error");
+      setMessage("Failed to subscribe. Please try again.");
+    }
+  };
+
   return (
     <footer id="contact" className="py-24 md:py-32 px-6 bg-bg border-t border-border">
       <div className="max-w-7xl mx-auto">
@@ -94,22 +129,33 @@ export default function Footer() {
           <h3 className="text-sm uppercase tracking-[0.3em] text-text-secondary mb-6">
             Subscribe to our newsletter
           </h3>
-          <form
-            onSubmit={(e) => e.preventDefault()}
-            className="flex gap-0"
-          >
+          <form onSubmit={handleSubscribe} className="flex gap-0">
             <input
               type="email"
               placeholder="your@email.com"
-              className="flex-1 px-4 py-3 bg-bg-card border border-border text-text-primary text-sm placeholder:text-text-muted focus:outline-none focus:border-crimson transition-colors"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              disabled={status === "loading"}
+              className="flex-1 px-4 py-3 bg-bg-card border border-border text-text-primary text-sm placeholder:text-text-muted focus:outline-none focus:border-crimson transition-colors disabled:opacity-50"
             />
             <button
               type="submit"
-              className="px-6 py-3 bg-crimson hover:bg-crimson-light text-text-primary uppercase tracking-[0.2em] text-xs font-semibold transition-all duration-300"
+              disabled={status === "loading"}
+              className="px-6 py-3 bg-crimson hover:bg-crimson-light text-text-primary uppercase tracking-[0.2em] text-xs font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Subscribe
+              {status === "loading" ? "..." : "Subscribe"}
             </button>
           </form>
+          {message && (
+            <p
+              className={`mt-3 text-xs uppercase tracking-[0.15em] ${
+                status === "success" ? "text-amber" : "text-crimson-light"
+              }`}
+            >
+              {message}
+            </p>
+          )}
         </AnimatedSection>
 
         {/* Bottom */}
