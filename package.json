@@ -11,6 +11,7 @@
   "author": "Interleaved",
   "license": "ISC",
   "dependencies": {
+    "@plasmicapp/loader-nextjs": "^1.0.454",
     "framer-motion": "^12.34.3",
     "lucide-react": "^0.575.0",
     "next": "^16.1.6",
