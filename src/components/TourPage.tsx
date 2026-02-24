@@ -102,15 +102,17 @@ export default function TourPage() {
                 .
               </p>
               <p className="text-text-secondary mb-10 leading-relaxed max-w-md mx-auto">
-                Sign up for the newsletter to be the first to know when dates
+                Join the VIP list to be the first to know when dates
                 are announced.
               </p>
-              <Link
-                href="/#contact"
+              <a
+                href="https://fans.interleavedmusic.com/vip-list-1?source=website"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-block px-8 py-3 bg-crimson hover:bg-crimson-light text-text-primary uppercase tracking-[0.2em] text-sm font-semibold transition-all duration-300"
               >
-                Get Notified
-              </Link>
+                Join the VIP List
+              </a>
             </div>
           </AnimatedSection>
         )}
