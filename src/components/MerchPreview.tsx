@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { ShoppingBag } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 import SectionHeading from "./SectionHeading";
 
@@ -9,19 +8,19 @@ const featuredProducts = [
   {
     name: 'Recording Zone Classic Tee',
     price: "$19.99",
-    image: "/images/merch/tee-placeholder.jpg",
+    image: "/images/merch/mens-classic-tee-black-front-665f14f6d1c3e-1024x1024.jpg",
     href: "/merch",
   },
   {
     name: "TBITW EP & Unisex Hoodie",
     price: "$44.00",
-    image: "/images/merch/hoodie-placeholder.jpg",
+    image: "/images/merch/TBITW-Vinyl-Album-Cover-Instagram-Post-1-1-1024x1024.png",
     href: "/merch",
   },
   {
     name: "Interleaved Dad Hat",
     price: "$32.00",
-    image: "/images/merch/hat-placeholder.jpg",
+    image: "/images/merch/classic-dad-hat-black-front-6553b3fdea4e2-1024x1024.jpg",
     href: "/merch",
   },
 ];
@@ -32,17 +31,23 @@ export default function MerchPreview() {
       <div className="max-w-7xl mx-auto">
         <SectionHeading title="Merch" subtitle="Official Gear" />
 
+        <AnimatedSection className="text-center mb-12">
+          <p className="text-amber uppercase tracking-[0.3em] text-sm font-semibold">
+            New Merch Coming Soon!
+          </p>
+        </AnimatedSection>
+
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12">
           {featuredProducts.map((product, i) => (
             <AnimatedSection key={product.name} delay={i * 0.1}>
               <div className="group border border-border bg-bg-card hover:border-crimson/40 transition-all duration-500">
                 <div className="relative aspect-square overflow-hidden bg-bg">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <ShoppingBag
-                      size={48}
-                      className="text-text-muted/30"
-                    />
-                  </div>
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
                 <div className="p-5">
                   <h4 className="text-sm uppercase tracking-[0.1em] text-text-primary group-hover:text-amber transition-colors">

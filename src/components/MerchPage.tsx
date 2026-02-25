@@ -26,7 +26,7 @@ const products: Product[] = [
     displayPrice: "From $19.99",
     category: "APPAREL",
     description: "Classic fit tee with the Interleaved Recording Zone design.",
-    image: null,
+    image: "/images/merch/mens-classic-tee-black-front-665f14f6d1c3e-1024x1024.jpg",
     sizes: "S|M|L|XL|2XL|3XL",
     url: "/merch",
   },
@@ -37,7 +37,7 @@ const products: Product[] = [
     displayPrice: "From $44.00",
     category: "BUNDLE",
     description: "There's Blood In The Water EP digital download bundled with an Interleaved unisex hoodie.",
-    image: null,
+    image: "/images/merch/TBITW-Vinyl-Album-Cover-Instagram-Post-1-1-1024x1024.png",
     sizes: "S|M|L|XL|2XL|3XL",
     url: "/merch",
   },
@@ -48,7 +48,7 @@ const products: Product[] = [
     displayPrice: "$9.99",
     category: "DIGITAL",
     description: "Digital download of the There's Blood In The Water EP.",
-    image: null,
+    image: "/images/merch/Interleaved-EP-Art-1024x1024.png",
     url: "/merch",
   },
   {
@@ -58,7 +58,7 @@ const products: Product[] = [
     displayPrice: "$50.00",
     category: "BUNDLE",
     description: "There's Blood In The Water EP digital download bundled with an Interleaved unisex sweatshirt.",
-    image: null,
+    image: "/images/merch/TBITW-Vinyl-Album-Cover-Instagram-Post-1-1-1024x1024.png",
     sizes: "S|M|L|XL|2XL|3XL",
     url: "/merch",
   },
@@ -69,7 +69,7 @@ const products: Product[] = [
     displayPrice: "$32.00",
     category: "ACCESSORIES",
     description: "Embroidered Interleaved dad hat. One size fits most.",
-    image: null,
+    image: "/images/merch/classic-dad-hat-black-front-6553b3fdea4e2-1024x1024.jpg",
     url: "/merch",
   },
   {
@@ -79,7 +79,7 @@ const products: Product[] = [
     displayPrice: "From $51.00",
     category: "APPAREL",
     description: "Interleaved unisex hoodie.",
-    image: null,
+    image: "/images/merch/unisex-premium-hoodie-black-front-65510e5442df1-1024x1024.jpg",
     sizes: "S|M|L|XL|2XL|3XL",
     url: "/merch",
   },
@@ -90,7 +90,7 @@ const products: Product[] = [
     displayPrice: "From $45.00",
     category: "APPAREL",
     description: "Interleaved premium unisex sweatshirt.",
-    image: null,
+    image: "/images/merch/unisex-premium-sweatshirt-black-front-65510e1967871-1024x1024.jpg",
     sizes: "S|M|L|XL|2XL|3XL",
     url: "/merch",
   },
@@ -101,7 +101,7 @@ const products: Product[] = [
     displayPrice: "From $31.50",
     category: "APPAREL",
     description: "Interleaved organic cotton t-shirt.",
-    image: null,
+    image: "/images/merch/unisex-organic-t-shirt-black-front-65510ddb5eb1f-1024x1024.jpg",
     sizes: "S|M|L|XL|2XL",
     url: "/merch",
   },
@@ -123,6 +123,12 @@ export default function MerchPage() {
 
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeading title="Merch" subtitle="Official Interleaved Gear" />
+
+        <AnimatedSection className="text-center mb-12">
+          <p className="text-amber uppercase tracking-[0.3em] text-sm font-semibold">
+            New Merch Coming Soon!
+          </p>
+        </AnimatedSection>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {products.map((product, i) => (
@@ -162,23 +168,9 @@ export default function MerchPage() {
                   <p className="text-amber text-sm font-semibold mb-4">
                     {product.displayPrice}
                   </p>
-                  <button
-                    className="snipcart-add-item mt-2 w-full py-2.5 border border-text-muted/30 hover:border-crimson hover:bg-crimson text-text-secondary hover:text-text-primary uppercase tracking-[0.2em] text-xs transition-all duration-300"
-                    data-item-id={product.id}
-                    data-item-name={product.name}
-                    data-item-price={product.price}
-                    data-item-url={product.url}
-                    data-item-description={product.description}
-                    {...(product.sizes
-                      ? {
-                          "data-item-custom1-name": "Size",
-                          "data-item-custom1-options": product.sizes,
-                          "data-item-custom1-required": "true",
-                        }
-                      : {})}
-                  >
-                    Add to Cart
-                  </button>
+                  <span className="mt-2 w-full py-2.5 border border-text-muted/20 text-text-muted uppercase tracking-[0.2em] text-xs text-center block cursor-not-allowed">
+                    Sold Out!
+                  </span>
                 </div>
               </div>
             </AnimatedSection>
