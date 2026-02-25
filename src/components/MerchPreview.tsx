@@ -56,7 +56,7 @@ export default function MerchPreview() {
                   <p className="text-amber text-sm mt-2 font-semibold">
                     {product.price}
                   </p>
-                  <span className="mt-3 w-full py-2 border border-text-muted/20 text-text-muted uppercase tracking-[0.2em] text-xs text-center block cursor-not-allowed">
+                  <span className="mt-3 w-full py-2 border border-text-muted/20 text-text-secondary uppercase tracking-[0.2em] text-xs text-center block cursor-not-allowed">
                     Sold Out!
                   </span>
                 </div>
