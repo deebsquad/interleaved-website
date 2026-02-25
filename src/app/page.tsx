@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import VideoTeaser from "@/components/VideoTeaser";
 import Music from "@/components/Music";
 import About from "@/components/About";
 import Tour from "@/components/Tour";
@@ -9,6 +10,8 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <SectionDivider />
+      <VideoTeaser />
       <SectionDivider />
       <Music />
       <SectionDivider />
