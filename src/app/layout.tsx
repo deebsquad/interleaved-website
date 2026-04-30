@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -88,6 +89,19 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css"
         />
+        {/* Roku Pixel Code */}
+        <Script id="roku-pixel" strategy="afterInteractive">
+          {`!function(e,r){if(!e.rkp){var t=e.rkp=function(){
+var e=Array.prototype.slice.call(arguments)
+;e.push(Date.now()),t.eventProcessor?t.eventProcessor.apply(t,e):t.queue.push(e)
+};t.initiatorVersion="1.0",t.queue=[],t.load=function(e){
+var t=r.createElement("script");t.async=!0,t.src=e
+;var n=r.getElementsByTagName("script")[0]
+;(n?n.parentNode:r.body).insertBefore(t,n)},rkp.load("https://cdn.ravm.tv/ust/dist/rkp.loader.js")}
+}(window,document);
+rkp("init","Pacc2JoCWjAf"),rkp('event', 'PAGE_VIEW');`}
+        </Script>
+        {/* End Roku Pixel Code */}
       </head>
       <body
         className={`${inter.variable} font-sans bg-bg text-text-primary antialiased grain-overlay`}
